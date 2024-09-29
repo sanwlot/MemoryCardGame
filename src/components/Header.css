@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  /* padding: 1em; */
+  background-color: rgba(255, 255, 255, 0.693);
+  color: rgb(0, 61, 61);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+header .scoreContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  font-size: x-large;
+}
