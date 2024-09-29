@@ -1,11 +1,11 @@
 main {
-  padding: 1em;
+  padding-top: 0.7em;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   align-content: center;
-  gap: 1em;
+  gap: 0.7em;
   background: linear-gradient(47deg, turquoise, skyblue);
 }
 
@@ -16,6 +16,12 @@ main .card {
   transition: box-shadow 100ms;
   transition: scale 100ms;
   cursor: pointer;
+}
+
+@media (width > 500px) {
+  main .card {
+    width: 200px;
+  }
 }
 
 .card:hover {
