@@ -7,6 +7,7 @@ import { useEffect } from "react"
 export default function App() {
   const [pokemons, setPokemons] = useState([])
   const [score, setScore] = useState({ score: 0, bestScore: 0 })
+  const [clickedPokemonId, setClickedPokemonId] = useState(new Set())
 
   useEffect(() => {
     let ignore = false
@@ -27,24 +28,18 @@ export default function App() {
   }, [])
 
   function handleClick(id) {
-    setPokemons((prev) => {
-      return prev.map((pokemon) => {
-        if (pokemon.id === id) {
-          if (!pokemon.isSelected) {
-            setScore({ ...score, score: score.score + 1 })
-            return {
-              ...pokemon,
-              isSelected: true,
-            }
-          } else {
-            alert("You lost")
-          }
-        }
-        return pokemon
-      })
-    })
-
-    setPokemons((prev) => shuffleArray(prev))
+    if (clickedPokemonId.has(id)) {
+      setScore((prev) => ({
+        ...prev,
+        score: 0,
+        bestScore: Math.max(prev.score, prev.bestScore),
+      }))
+      setClickedPokemonId(new Set())
+    } else {
+      setClickedPokemonId((prev) => new Set(prev).add(id))
+      setScore((prevScore) => ({ ...prevScore, score: prevScore.score + 1 }))
+      setPokemons((prev) => shuffleArray(prev))
+    }
   }
 
   function shuffleArray(arr) {
